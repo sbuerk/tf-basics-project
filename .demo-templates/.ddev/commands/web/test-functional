@@ -1,0 +1,26 @@
+#!/bin/bash
+
+## Description: Execute functional tests
+## Usage: test-functional <phpunit-options>
+## Example: "ddev test-unit" or "ddev test-unit packages/custom-middleware/Tests/Unit/"
+
+#-----------------------------------------------------------------------------------------------------------------------
+# sqlite example
+#-----------------------------------------------------------------------------------------------------------------------
+\
+  typo3DatabaseDriver=pdo_sqlite \
+  php vendor/bin/phpunit -c Build/phpunit/FunctionalTests.xml "$@"
+#-----------------------------------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------------------------------
+# mariadb example (ddev database)
+#-----------------------------------------------------------------------------------------------------------------------
+#\
+#  typo3DatabaseDriver='mysqli' \
+#  typo3DatabaseHost='db' \
+#  typo3DatabasePort=3306 \
+#  typo3DatabaseUsername='root' \
+#  typo3DatabasePassword='root' \
+#  typo3DatabaseName='func' \
+#  php vendor/bin/phpunit -c Build/phpunit/FunctionalTests.xml "$@"
+#-----------------------------------------------------------------------------------------------------------------------

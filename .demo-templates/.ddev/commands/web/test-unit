@@ -1,0 +1,7 @@
+#!/bin/bash
+
+## Description: Execute unit tests
+## Usage: test-unit <phpunit-options>
+## Example: "ddev test-unit" or "ddev test-unit packages/custom-middleware/Tests/Unit/"
+
+php vendor/bin/phpunit -c Build/phpunit/UnitTests.xml "$@"
