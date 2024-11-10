@@ -21,7 +21,7 @@ The included documentation and guide does not contain instruction
 or help to use it without `ddev`.
 
 
-## Overview and project usage
+## Overview and repository usage
 
 ### Pre-requisits
 
@@ -53,12 +53,12 @@ composer installation along with two local path extension in
 
 Both extension contain dummy unit and functional tests.
 
-### Start up the engine (project)
+### Start up the engine (repository)
 
 Simply clone this repository and do a ddev start. The provided
 setup installes the instance automatically on the first start.
 
-```terminal
+```bash
 git clone git@github.com:sbuerk/tf-basics-project.git \
   && cd ./tf-basics-project \
   && ddev start
@@ -72,14 +72,14 @@ start with a clean state again use:
 
 **NOTE: This is destructive and do not preseve any data.**
 
-```terminal
+```bash
 ddev stop -ROU \
   && git clean -xdf -e .idea/
 ```
 
 **Delete repository project from ddev, so folder can be deleted**
 
-```terminal 
+```bash 
 ddev stop -ROU \
   && ddev delete -O --yes \
   && git clean -xdf -e .idea/  
@@ -96,7 +96,7 @@ ddev stop -ROU \
 To be able to retry the guide, it's recommended to create a custom 
 branch first:
 
-```terminal
+```bash
 git checkout -b integrate-testing
 ```
 
@@ -110,7 +110,7 @@ The project is based on TYPO3 v12 without the need to support v11,
 thus installing `typo3/testing-framework` v8 along with `phpunit 10`
 is reasonable. These dependencies can be installed using `composer`:
 
-```terminal
+```bash
 ddev composer require --dev \
   "typo3/testing-framework":"^8.0.9" \
   "phpunit/phpunit":"^10.5"
@@ -185,7 +185,7 @@ That means, that we need to adjust the paths in the template files to be
 
 **Copy template files to project (packages folder)**
 
-```terminal
+```bash
 ddev exec mkdir -p Build/phpunit \
   && ddev exec \cp -Rvf \
        vendor/typo3/testing-framework/Resources/Core/Build/* \
@@ -202,7 +202,7 @@ and adjust the paths to:
 
 or you could simply use following commands:
 
-```terminal
+```bash
 ddev exec \
   "sed -i 's/..\/..\/..\/..\/..\/..\/typo3\/sysext\//..\/..\/packages\//g' Build/phpunit/UnitTests.xml" \
 && ddev exec \
@@ -218,7 +218,7 @@ That means, that we need to adjust the paths in the template files to be
 
 **Copy template files to project (packages folder)**
 
-```terminal
+```bash
 ddev exec mkdir -p Build/phpunit \
   && ddev exec \cp -Rvf \
        vendor/typo3/testing-framework/Resources/Core/Build/* \
@@ -235,7 +235,7 @@ and adjust the paths to:
 
 or you could simply use following commands:
 
-```terminal
+```bash
 ddev exec \
   "sed -i 's/..\/..\/..\/..\/..\/..\/typo3\/sysext\/\*\//..\/..\//g' Build/phpunit/UnitTests.xml" \
 && ddev exec \
@@ -251,7 +251,7 @@ That means, that we need to adjust the paths in the template files to be contain
 
 **Copy template files to project (packages folder)**
 
-```terminal
+```bash
 ddev exec mkdir -p Build/phpunit \
   && ddev exec \cp -Rvf \
        vendor/typo3/testing-framework/Resources/Core/Build/* \
@@ -317,13 +317,13 @@ it out now to verify it (this demo project containes dummy tests):
 
 **Execute unit tests of all local path packages**
 
-```terminal
+```bash
 ddev exec phpunit -c Build/phpunit/UnitTests.xml
 ```
 
 **Execute functional tests using sqlite database**
 
-```terminal
+```bash
 ddev exec \
   typo3DatabaseDriver=pdo_sqlite \
   php vendor/bin/phpunit -c Build/phpunit/FunctionalTests.xml
@@ -339,7 +339,7 @@ tell the `testing-framework ` which database to use. This example project uses M
 10.5 and the command to invoke the tests against the ddev provided database server
 would be:
 
-```terminal
+```bash
 ddev exec \
   typo3DatabaseDriver='mysqli' \
   typo3DatabaseHost='db' \
